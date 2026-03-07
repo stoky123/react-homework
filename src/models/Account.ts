@@ -16,4 +16,6 @@ export abstract class Account {
   }
 
   abstract withdraw(amount: number): boolean;
+
+  abstract getType(): string;
 }

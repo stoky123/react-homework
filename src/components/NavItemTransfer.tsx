@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Account } from "../models/Account";
 import { formatAccountNumber } from "../utils/formatters";
+import type { AccountState } from "../App";
 
 type Props = {
-  accounts: { [id: string]: Account };
+  accounts: AccountState;
 };
 
 function NavItemTransfer({ accounts }: Props) {

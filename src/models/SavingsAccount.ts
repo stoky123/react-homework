@@ -21,4 +21,8 @@ export class SavingsAccount extends Account {
     this.balance -= amount;
     return true;
   }
+
+  getType(): string {
+    return "savings";
+  }
 }

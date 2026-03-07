@@ -8,7 +8,7 @@ import { Account } from "./models/Account";
 import { useState } from "react";
 import "./App.css";
 
-type AccountState = {
+export type AccountState = {
   [id: string]: Account;
 };
 

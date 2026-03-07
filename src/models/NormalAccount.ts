@@ -15,4 +15,8 @@ export class NormalAccount extends Account {
     this.balance -= amount;
     return true;
   }
+
+  getType(): string {
+    return "normal";
+  }
 }

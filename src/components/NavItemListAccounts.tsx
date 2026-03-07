@@ -1,23 +1,22 @@
-import type { Account } from "../models/Account";
-import { SavingsAccount } from "../models/SavingsAccount";
+import type { AccountState } from "../App";
+import AccountListItem from "./AccountListItem";
 
 type Props = {
-  accounts: { [id: string]: Account };
+  accounts: AccountState;
 };
 
 function NavItemListAccounts({ accounts }: Props) {
+  if (!Object.keys(accounts).length) {
+    return <p>No accounts created yet.</p>;
+  }
+
   return (
     <ul>
-      {Object.values(accounts).map((account) => (
-        <li key={account.accountNumber}>
-          Account Number: {account.accountNumber}
-          Balance: €{account.balance}
-          User Name: {account.userName}
-          {account instanceof SavingsAccount && (
-            <>Interest Rate: {account.interestRate}%</>
-          )}
-        </li>
-      ))}
+      {Object.values(accounts)
+        .sort((a, b) => a.accountNumber.localeCompare(b.accountNumber))
+        .map((account) => (
+          <AccountListItem key={account.accountNumber} account={account} />
+        ))}
     </ul>
   );
 }

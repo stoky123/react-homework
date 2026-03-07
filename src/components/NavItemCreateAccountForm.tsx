@@ -3,10 +3,11 @@ import { NormalAccount } from "../models/NormalAccount";
 import { SavingsAccount } from "../models/SavingsAccount";
 import type { Account, AccountType } from "../models/Account";
 import { formatAccountNumber } from "../utils/formatters";
+import type { AccountState } from "../App";
 
 type Props = {
   accounts: { [id: string]: Account };
-  setAccounts: React.Dispatch<React.SetStateAction<{ [id: string]: Account }>>;
+  setAccounts: React.Dispatch<React.SetStateAction<AccountState>>;
 };
 
 function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
