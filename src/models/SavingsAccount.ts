@@ -1,4 +1,4 @@
-import { Account } from "./Account";
+import { Account, type AccountType } from "./Account";
 
 export class SavingsAccount extends Account {
   public interestRate: number;
@@ -22,7 +22,7 @@ export class SavingsAccount extends Account {
     return true;
   }
 
-  getType(): string {
+  getType(): AccountType {
     return "savings";
   }
 }

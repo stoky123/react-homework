@@ -10,7 +10,7 @@ function AccountListItem({ account }: Props) {
     <li>
       <div>Account Type: {account.getType()}</div>
       <div>Account Number: {account.accountNumber}</div>
-      <div>Balance: €{account.balance}</div>
+      <div>Balance: €{account.balanceAmount}</div>
       <div>User Name: {account.userName}</div>
       {account instanceof SavingsAccount && (
         <div>Interest Rate: {account.interestRate}%</div>

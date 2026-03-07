@@ -1,4 +1,4 @@
-import { Account } from "./Account";
+import { Account, type AccountType } from "./Account";
 
 export class NormalAccount extends Account {
   private minBalance = -500;
@@ -16,7 +16,7 @@ export class NormalAccount extends Account {
     return true;
   }
 
-  getType(): string {
+  getType(): AccountType {
     return "normal";
   }
 }

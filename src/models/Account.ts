@@ -1,9 +1,9 @@
 export type AccountType = "normal" | "savings";
 
 export abstract class Account {
-  public accountNumber: string;
-  public userName: string;
-  public balance: number;
+  public readonly accountNumber: string;
+  public readonly userName: string;
+  protected balance: number;
 
   constructor(accountNumber: string, userName: string, balance: number) {
     this.accountNumber = accountNumber;
@@ -17,5 +17,9 @@ export abstract class Account {
 
   abstract withdraw(amount: number): boolean;
 
-  abstract getType(): string;
+  abstract getType(): AccountType;
+
+  get balanceAmount(): number {
+    return this.balance;
+  }
 }
