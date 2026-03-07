@@ -4,7 +4,7 @@ export class SavingsAccount extends Account {
   public interestRate: number;
 
   constructor(
-    accountNumber: number,
+    accountNumber: string,
     userName: string,
     balance: number,
     interestRate: number,

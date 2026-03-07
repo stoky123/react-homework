@@ -1,12 +1,38 @@
-function NavigationMenu() {
+import React from "react";
+
+type Props = {
+  setView: React.Dispatch<
+    React.SetStateAction<"create" | "home" | "list" | "withdraw" | "deposit">
+  >;
+};
+
+type NavItem = {
+  label: string;
+  action: () => void;
+};
+
+function NavigationMenu({ setView }: Props) {
+  const navItems: NavItem[] = [
+    {
+      label: "Create Account",
+      action: () => {
+        setView("create");
+      },
+    },
+    { label: "List Accounts", action: () => {} },
+    { label: "Transfer", action: () => {} },
+    { label: "Withdraw", action: () => {} },
+    { label: "Deposit", action: () => {} },
+  ];
+
   return (
     <nav>
       <ul>
-        <li>Create Account</li>
-        <li>List Accounts</li>
-        <li>Transfer</li>
-        <li>Withdraw</li>
-        <li>Deposit</li>
+        {navItems.map((item) => (
+          <li key={item.label} onClick={item.action}>
+            {item.label}
+          </li>
+        ))}
       </ul>
     </nav>
   );

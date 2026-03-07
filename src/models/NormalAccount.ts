@@ -3,7 +3,7 @@ import { Account } from "./Account";
 export class NormalAccount extends Account {
   private minBalance = -500;
 
-  constructor(accountNumber: number, userName: string, balance: number) {
+  constructor(accountNumber: string, userName: string, balance: number) {
     super(accountNumber, userName, balance + 10);
   }
 
