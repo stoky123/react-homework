@@ -7,7 +7,7 @@ type Props = {
 };
 
 function NavItemWithdraw({ accounts }: Props) {
-  const [account, setAccount] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
   function withdraw() {
@@ -15,24 +15,33 @@ function NavItemWithdraw({ accounts }: Props) {
       alert("Please fill out the fields correctly.");
     }
 
+    if (!accounts[accountNumber].withdraw(amount)) {
+      alert("Not enough balance to withdraw.");
+    }
+
     resetForm();
   }
 
   function validateWithdrawRequest() {
-    return accounts[account] && accounts[account].withdraw(amount);
+    return Boolean(accounts[accountNumber]);
   }
 
   function resetForm() {
-    setAccount("");
+    setAccountNumber("");
     setAmount(0);
   }
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        withdraw();
+      }}
+    >
       <input
-        value={account}
+        value={accountNumber}
         onChange={(e) => {
-          setAccount(formatAccountNumber(e.target.value));
+          setAccountNumber(formatAccountNumber(e.target.value));
         }}
         placeholder="000-0000000-00"
         maxLength={14}
@@ -41,14 +50,14 @@ function NavItemWithdraw({ accounts }: Props) {
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(Number(e.target.value));
+          setAmount(e.target.valueAsNumber);
         }}
         type="number"
         placeholder="0"
       />
 
-      <button onClick={withdraw}>Withdraw</button>
-    </>
+      <button type="submit">Withdraw</button>
+    </form>
   );
 }
 
