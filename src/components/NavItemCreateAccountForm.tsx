@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NormalAccount } from "../models/NormalAccount";
 import { SavingsAccount } from "../models/SavingsAccount";
 import type { Account } from "../models/Account";
+import { formatAccountNumber } from "../utils/formatters";
 
 type Props = {
   accounts: { [id: string]: Account };
@@ -18,28 +19,43 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   const [interestRate, setInterestRate] = useState(0);
 
   function createAccount() {
-    if (accountNumber && userName) {
-      let newAccount: Account;
-      if (accountType === "normal") {
-        newAccount = new NormalAccount(accountNumber, userName, balance);
-      } else {
-        newAccount = new SavingsAccount(
-          accountNumber,
-          userName,
-          balance,
-          interestRate,
-        );
-      }
-
-      setAccounts({ ...accounts, [accountNumber]: newAccount });
-      setAccountNumber("");
-      setUserName("");
-      setBalance(0);
-      setInterestRate(0);
-      console.log(accounts);
-    } else {
-      alert("Please fill out Account Number and User Name fields correctly.");
+    if (!validateAccountCreation()) {
+      alert("Please fill out the fields correctly!");
+      return;
     }
+
+    let newAccount: Account;
+    if (accountType === "normal") {
+      newAccount = new NormalAccount(accountNumber, userName, balance);
+    } else {
+      newAccount = new SavingsAccount(
+        accountNumber,
+        userName,
+        balance,
+        interestRate,
+      );
+    }
+
+    setAccounts({ ...accounts, [accountNumber]: newAccount });
+    resetForm();
+  }
+
+  function validateAccountCreation() {
+    return (
+      !accounts[accountNumber] &&
+      accountNumber.length == 14 &&
+      userName &&
+      (accountType === "normal"
+        ? balance >= -510
+        : balance >= 0 && interestRate >= 0)
+    );
+  }
+
+  function resetForm() {
+    setAccountNumber("");
+    setUserName("");
+    setBalance(0);
+    setInterestRate(0);
   }
 
   return (
@@ -53,13 +69,16 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         <option value="normal">Normal Account</option>
         <option value="savings">Savings Account</option>
       </select>
+
       <input
         value={accountNumber}
         onChange={(e) => {
-          setAccountNumber(e.target.value);
+          setAccountNumber(formatAccountNumber(e.target.value));
         }}
-        placeholder="Account Number"
+        placeholder="000-0000000-00"
+        maxLength={14}
       />
+
       <input
         value={userName}
         onChange={(e) => {
@@ -67,14 +86,16 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         }}
         placeholder="User Name"
       />
+
       <input
         value={balance || ""}
         onChange={(e) => {
           setBalance(Number(e.target.value));
         }}
         type="number"
-        placeholder="Balance"
+        placeholder="0"
       />
+
       {accountType === "savings" && (
         <input
           value={interestRate || ""}
@@ -82,9 +103,10 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
             setInterestRate(Number(e.target.value));
           }}
           type="number"
-          placeholder="Interest Rate"
+          placeholder="0"
         />
       )}
+
       <button onClick={createAccount}>Create</button>
     </>
   );

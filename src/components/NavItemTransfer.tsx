@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Account } from "../models/Account";
+import { formatAccountNumber } from "../utils/formatters";
 
 type Props = {
   accounts: { [id: string]: Account };
@@ -11,19 +12,29 @@ function NavItemTransfer({ accounts }: Props) {
   const [amount, setAmount] = useState(0);
 
   function transfer() {
-    if (accounts[fromAccount].withdraw(amount)) {
-      accounts[toAccount].deposit(amount);
-
-      setFromAccount("");
-      setToAccount("");
-      setAmount(0);
-
-      return true;
+    if (!validateTransferRequest()) {
+      alert("Please fill out the fields correctly.");
+      return;
     }
 
-    alert("Not enough balance to transfer");
+    accounts[toAccount].deposit(amount);
+    resetForm();
+  }
 
-    return false;
+  function validateTransferRequest() {
+    return (
+      accounts[fromAccount] &&
+      accounts[toAccount] &&
+      amount > 0 &&
+      fromAccount !== toAccount &&
+      accounts[fromAccount].withdraw(amount)
+    );
+  }
+
+  function resetForm() {
+    setFromAccount("");
+    setToAccount("");
+    setAmount(0);
   }
 
   return (
@@ -31,24 +42,30 @@ function NavItemTransfer({ accounts }: Props) {
       <input
         value={fromAccount}
         onChange={(e) => {
-          setFromAccount(e.target.value);
+          setFromAccount(formatAccountNumber(e.target.value));
         }}
-        placeholder="Account number"
+        placeholder="000-0000000-00"
+        maxLength={14}
       />
+
       <input
         value={toAccount}
         onChange={(e) => {
-          setToAccount(e.target.value);
+          setToAccount(formatAccountNumber(e.target.value));
         }}
-        placeholder="Account number"
+        placeholder="000-0000000-00"
+        maxLength={14}
       />
+
       <input
         value={amount || ""}
         onChange={(e) => {
           setAmount(Number(e.target.value));
         }}
-        placeholder="Amount"
+        type="number"
+        placeholder="0"
       />
+
       <button onClick={transfer}>Transfer</button>
     </>
   );

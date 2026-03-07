@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Account } from "../models/Account";
+import { formatAccountNumber } from "../utils/formatters";
 
 type Props = {
   accounts: { [id: string]: Account };
@@ -10,7 +11,20 @@ function NavItemDeposit({ accounts }: Props) {
   const [amount, setAmount] = useState(0);
 
   function deposit() {
+    if (!validateDepositRequest()) {
+      alert("Account number or amount is invalid.");
+      return;
+    }
+
     accounts[account].deposit(amount);
+    resetForm();
+  }
+
+  function validateDepositRequest(): boolean {
+    return accounts[account] && amount > 0;
+  }
+
+  function resetForm() {
     setAccount("");
     setAmount(0);
   }
@@ -20,17 +34,21 @@ function NavItemDeposit({ accounts }: Props) {
       <input
         value={account}
         onChange={(e) => {
-          setAccount(e.target.value);
+          setAccount(formatAccountNumber(e.target.value));
         }}
-        placeholder="Account number"
+        placeholder="000-0000000-00"
+        maxLength={14}
       />
+
       <input
         value={amount || ""}
         onChange={(e) => {
           setAmount(Number(e.target.value));
         }}
-        placeholder="Amount"
+        type="number"
+        placeholder="0"
       />
+
       <button onClick={deposit}>Deposit</button>
     </>
   );
