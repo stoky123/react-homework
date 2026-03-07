@@ -4,13 +4,18 @@ import NavItemListAccounts from "./components/NavItemListAccounts";
 import { Account } from "./models/Account";
 import { useState } from "react";
 import "./App.css";
+import NavItemTransfer from "./components/NavItemTransfer";
+
+type AccountState = {
+  [id: string]: Account;
+};
 
 function App() {
   const [view, setView] = useState<
-    "home" | "create" | "list" | "withdraw" | "deposit"
+    "home" | "create" | "list" | "transfer" | "withdraw" | "deposit"
   >("home");
 
-  const [accounts, setAccounts] = useState<Account[]>([]);
+  const [accounts, setAccounts] = useState<AccountState>({});
 
   function renderView() {
     switch (view) {
@@ -23,6 +28,8 @@ function App() {
         );
       case "list":
         return <NavItemListAccounts accounts={accounts} />;
+      case "transfer":
+        return <NavItemTransfer accounts={accounts} />;
       default:
         return <></>;
     }

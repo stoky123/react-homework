@@ -4,8 +4,8 @@ import { SavingsAccount } from "../models/SavingsAccount";
 import type { Account } from "../models/Account";
 
 type Props = {
-  accounts: Account[];
-  setAccounts: React.Dispatch<React.SetStateAction<Account[]>>;
+  accounts: { [id: string]: Account };
+  setAccounts: React.Dispatch<React.SetStateAction<{ [id: string]: Account }>>;
 };
 
 function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
@@ -31,11 +31,12 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         );
       }
 
-      setAccounts([...accounts, newAccount]);
+      setAccounts({ ...accounts, [accountNumber]: newAccount });
       setAccountNumber("");
       setUserName("");
       setBalance(0);
       setInterestRate(0);
+      console.log(accounts);
     } else {
       alert("Please fill out Account Number and User Name fields correctly.");
     }

@@ -2,7 +2,9 @@ import React from "react";
 
 type Props = {
   setView: React.Dispatch<
-    React.SetStateAction<"create" | "home" | "list" | "withdraw" | "deposit">
+    React.SetStateAction<
+      "create" | "home" | "list" | "transfer" | "withdraw" | "deposit"
+    >
   >;
 };
 
@@ -25,7 +27,12 @@ function NavigationMenu({ setView }: Props) {
         setView("list");
       },
     },
-    { label: "Transfer", action: () => {} },
+    {
+      label: "Transfer",
+      action: () => {
+        setView("transfer");
+      },
+    },
     { label: "Withdraw", action: () => {} },
     { label: "Deposit", action: () => {} },
   ];

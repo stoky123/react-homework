@@ -1,13 +1,13 @@
 import type { Account } from "../models/Account";
 
 type Props = {
-  accounts: Account[];
+  accounts: { [id: string]: Account };
 };
 
 function NavItemListAccounts({ accounts }: Props) {
   return (
     <ul>
-      {accounts.map((account) => (
+      {Object.values(accounts).map((account) => (
         <li key={account.accountNumber}>
           Account Number: {account.accountNumber}
           Balance: {account.balance}
