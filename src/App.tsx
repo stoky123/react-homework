@@ -12,10 +12,16 @@ type AccountState = {
   [id: string]: Account;
 };
 
+export type View =
+  | "create"
+  | "home"
+  | "list"
+  | "transfer"
+  | "withdraw"
+  | "deposit";
+
 function App() {
-  const [view, setView] = useState<
-    "home" | "create" | "list" | "transfer" | "withdraw" | "deposit"
-  >("home");
+  const [view, setView] = useState<View>("home");
 
   const [accounts, setAccounts] = useState<AccountState>({});
 

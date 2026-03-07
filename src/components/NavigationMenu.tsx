@@ -1,57 +1,49 @@
 import React from "react";
+import type { View } from "../App";
+
+const navItems: NavItem[] = [
+  {
+    label: "Create Account",
+    view: "create",
+  },
+  {
+    label: "List Accounts",
+    view: "list",
+  },
+  {
+    label: "Transfer",
+    view: "transfer",
+  },
+  {
+    label: "Withdraw",
+    view: "withdraw",
+  },
+  {
+    label: "Deposit",
+    view: "deposit",
+  },
+];
 
 type Props = {
-  setView: React.Dispatch<
-    React.SetStateAction<
-      "create" | "home" | "list" | "transfer" | "withdraw" | "deposit"
-    >
-  >;
+  setView: React.Dispatch<React.SetStateAction<View>>;
 };
 
 type NavItem = {
   label: string;
-  action: () => void;
+  view: string;
 };
 
 function NavigationMenu({ setView }: Props) {
-  const navItems: NavItem[] = [
-    {
-      label: "Create Account",
-      action: () => {
-        setView("create");
-      },
-    },
-    {
-      label: "List Accounts",
-      action: () => {
-        setView("list");
-      },
-    },
-    {
-      label: "Transfer",
-      action: () => {
-        setView("transfer");
-      },
-    },
-    {
-      label: "Withdraw",
-      action: () => {
-        setView("withdraw");
-      },
-    },
-    {
-      label: "Deposit",
-      action: () => {
-        setView("deposit");
-      },
-    },
-  ];
-
   return (
     <nav>
       <ul>
         {navItems.map((item) => (
-          <li key={item.label} onClick={item.action}>
+          <li
+            key={item.label}
+            onClick={() => {
+              setView(item.view as View);
+            }}
+          >
             {item.label}
           </li>
         ))}

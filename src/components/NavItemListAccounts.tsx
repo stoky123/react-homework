@@ -11,7 +11,7 @@ function NavItemListAccounts({ accounts }: Props) {
       {Object.values(accounts).map((account) => (
         <li key={account.accountNumber}>
           Account Number: {account.accountNumber}
-          Balance: {account.balance}
+          Balance: €{account.balance}
           User Name: {account.userName}
           {account instanceof SavingsAccount && (
             <>Interest Rate: {account.interestRate}%</>
