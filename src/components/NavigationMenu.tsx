@@ -1,5 +1,6 @@
 import React from "react";
 import type { View } from "../App";
+import "./NavigationMenu.css";
 
 const navItems: NavItem[] = [
   {
@@ -35,16 +36,17 @@ type NavItem = {
 
 function NavigationMenu({ setView }: Props) {
   return (
-    <nav>
-      <ul>
+    <nav className="mini-bank-navbar">
+      <ul className="mini-bank-navbar-list">
         {navItems.map((item) => (
           <li
             key={item.label}
+            className="mini-bank-navbar-list-item"
             onClick={() => {
               setView(item.view as View);
             }}
           >
-            {item.label}
+            <span>{item.label}</span>
           </li>
         ))}
       </ul>
