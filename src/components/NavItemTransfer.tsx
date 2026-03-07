@@ -7,8 +7,8 @@ type Props = {
 };
 
 function NavItemTransfer({ accounts }: Props) {
-  const [fromAccount, setFromAccount] = useState("");
-  const [toAccount, setToAccount] = useState("");
+  const [fromAccountNumber, setFromAccountNumber] = useState("");
+  const [toAccountNumber, setToAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
   function transfer() {
@@ -17,41 +17,50 @@ function NavItemTransfer({ accounts }: Props) {
       return;
     }
 
-    accounts[toAccount].deposit(amount);
+    if (!accounts[fromAccountNumber].withdraw(amount)) {
+      alert("Not enough balance to deposit.");
+      return;
+    }
+
+    accounts[toAccountNumber].deposit(amount);
     resetForm();
   }
 
   function validateTransferRequest() {
     return (
-      accounts[fromAccount] &&
-      accounts[toAccount] &&
+      accounts[fromAccountNumber] &&
+      accounts[toAccountNumber] &&
       amount > 0 &&
-      fromAccount !== toAccount &&
-      accounts[fromAccount].withdraw(amount)
+      fromAccountNumber !== toAccountNumber
     );
   }
 
   function resetForm() {
-    setFromAccount("");
-    setToAccount("");
+    setFromAccountNumber("");
+    setToAccountNumber("");
     setAmount(0);
   }
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        transfer();
+      }}
+    >
       <input
-        value={fromAccount}
+        value={fromAccountNumber}
         onChange={(e) => {
-          setFromAccount(formatAccountNumber(e.target.value));
+          setFromAccountNumber(formatAccountNumber(e.target.value));
         }}
         placeholder="000-0000000-00"
         maxLength={14}
       />
 
       <input
-        value={toAccount}
+        value={toAccountNumber}
         onChange={(e) => {
-          setToAccount(formatAccountNumber(e.target.value));
+          setToAccountNumber(formatAccountNumber(e.target.value));
         }}
         placeholder="000-0000000-00"
         maxLength={14}
@@ -60,14 +69,14 @@ function NavItemTransfer({ accounts }: Props) {
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(Number(e.target.value));
+          setAmount(e.target.valueAsNumber);
         }}
         type="number"
         placeholder="0"
       />
 
-      <button onClick={transfer}>Transfer</button>
-    </>
+      <button type="submit">Transfer</button>
+    </form>
   );
 }
 
