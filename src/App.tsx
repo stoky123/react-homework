@@ -1,5 +1,6 @@
 import NavigationMenu from "./components/NavigationMenu";
 import NavItemCreateAccountForm from "./components/NavItemCreateAccountForm";
+import NavItemListAccounts from "./components/NavItemListAccounts";
 import { Account } from "./models/Account";
 import { useState } from "react";
 import "./App.css";
@@ -20,6 +21,8 @@ function App() {
             setAccounts={setAccounts}
           />
         );
+      case "list":
+        return <NavItemListAccounts accounts={accounts} />;
       default:
         return <></>;
     }

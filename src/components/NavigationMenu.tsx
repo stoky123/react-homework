@@ -19,7 +19,12 @@ function NavigationMenu({ setView }: Props) {
         setView("create");
       },
     },
-    { label: "List Accounts", action: () => {} },
+    {
+      label: "List Accounts",
+      action: () => {
+        setView("list");
+      },
+    },
     { label: "Transfer", action: () => {} },
     { label: "Withdraw", action: () => {} },
     { label: "Deposit", action: () => {} },
