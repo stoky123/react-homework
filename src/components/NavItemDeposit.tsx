@@ -7,7 +7,7 @@ type Props = {
 };
 
 function NavItemDeposit({ accounts }: Props) {
-  const [account, setAccount] = useState("");
+  const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
   function deposit() {
@@ -16,25 +16,30 @@ function NavItemDeposit({ accounts }: Props) {
       return;
     }
 
-    accounts[account].deposit(amount);
+    accounts[accountNumber].deposit(amount);
     resetForm();
   }
 
   function validateDepositRequest(): boolean {
-    return accounts[account] && amount > 0;
+    return accounts[accountNumber] && amount > 0;
   }
 
   function resetForm() {
-    setAccount("");
+    setAccountNumber("");
     setAmount(0);
   }
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        deposit();
+      }}
+    >
       <input
-        value={account}
+        value={accountNumber}
         onChange={(e) => {
-          setAccount(formatAccountNumber(e.target.value));
+          setAccountNumber(formatAccountNumber(e.target.value));
         }}
         placeholder="000-0000000-00"
         maxLength={14}
@@ -43,14 +48,14 @@ function NavItemDeposit({ accounts }: Props) {
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(Number(e.target.value));
+          setAmount(e.target.valueAsNumber);
         }}
         type="number"
         placeholder="0"
       />
 
-      <button onClick={deposit}>Deposit</button>
-    </>
+      <button type="submit">Deposit</button>
+    </form>
   );
 }
 
