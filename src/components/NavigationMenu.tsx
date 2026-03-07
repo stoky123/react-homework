@@ -39,7 +39,12 @@ function NavigationMenu({ setView }: Props) {
         setView("withdraw");
       },
     },
-    { label: "Deposit", action: () => {} },
+    {
+      label: "Deposit",
+      action: () => {
+        setView("deposit");
+      },
+    },
   ];
 
   return (

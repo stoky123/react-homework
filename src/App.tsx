@@ -3,6 +3,7 @@ import NavItemCreateAccountForm from "./components/NavItemCreateAccountForm";
 import NavItemListAccounts from "./components/NavItemListAccounts";
 import NavItemTransfer from "./components/NavItemTransfer";
 import NavItemWithdraw from "./components/NavItemWithdraw";
+import NavItemDeposit from "./components/NavItemDeposit";
 import { Account } from "./models/Account";
 import { useState } from "react";
 import "./App.css";
@@ -33,6 +34,8 @@ function App() {
         return <NavItemTransfer accounts={accounts} />;
       case "withdraw":
         return <NavItemWithdraw accounts={accounts} />;
+      case "deposit":
+        return <NavItemDeposit accounts={accounts} />;
       default:
         return <></>;
     }
