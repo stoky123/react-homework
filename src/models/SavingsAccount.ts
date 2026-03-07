@@ -1,7 +1,7 @@
 import { Account, type AccountType } from "./Account";
 
 export class SavingsAccount extends Account {
-  public interestRate: number;
+  public readonly interestRate: number;
 
   constructor(
     accountNumber: string,
