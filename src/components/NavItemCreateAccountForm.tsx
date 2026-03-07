@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NormalAccount } from "../models/NormalAccount";
 import { SavingsAccount } from "../models/SavingsAccount";
-import type { Account } from "../models/Account";
+import type { Account, AccountType } from "../models/Account";
 import { formatAccountNumber } from "../utils/formatters";
 
 type Props = {
@@ -10,9 +10,7 @@ type Props = {
 };
 
 function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
-  const [accountType, setAccountType] = useState<"normal" | "savings">(
-    "normal",
-  );
+  const [accountType, setAccountType] = useState<AccountType>("normal");
   const [accountNumber, setAccountNumber] = useState("");
   const [userName, setUserName] = useState("");
   const [balance, setBalance] = useState(0);
@@ -24,6 +22,11 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
       return;
     }
 
+    setAccounts((prev) => ({ ...prev, [accountNumber]: buildAccount() }));
+    resetForm();
+  }
+
+  function buildAccount(): Account {
     let newAccount: Account;
     if (accountType === "normal") {
       newAccount = new NormalAccount(accountNumber, userName, balance);
@@ -36,8 +39,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
       );
     }
 
-    setAccounts({ ...accounts, [accountNumber]: newAccount });
-    resetForm();
+    return newAccount;
   }
 
   function validateAccountCreation() {
@@ -52,6 +54,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   }
 
   function resetForm() {
+    setAccountType("normal");
     setAccountNumber("");
     setUserName("");
     setBalance(0);
@@ -59,12 +62,15 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   }
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        createAccount();
+      }}
+    >
       <select
         value={accountType}
-        onChange={(event) =>
-          setAccountType(event.target.value as "normal" | "savings")
-        }
+        onChange={(event) => setAccountType(event.target.value as AccountType)}
       >
         <option value="normal">Normal Account</option>
         <option value="savings">Savings Account</option>
@@ -107,8 +113,8 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         />
       )}
 
-      <button onClick={createAccount}>Create</button>
-    </>
+      <button type="submit">Create</button>
+    </form>
   );
 }
 
