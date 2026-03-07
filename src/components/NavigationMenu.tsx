@@ -33,7 +33,12 @@ function NavigationMenu({ setView }: Props) {
         setView("transfer");
       },
     },
-    { label: "Withdraw", action: () => {} },
+    {
+      label: "Withdraw",
+      action: () => {
+        setView("withdraw");
+      },
+    },
     { label: "Deposit", action: () => {} },
   ];
 
