@@ -10,7 +10,7 @@ function NavItemDeposit({ accounts }: Props) {
   const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
-  function deposit() {
+  function deposit(): void {
     const errorMessage = getDepositRequestErrorMessage();
     if (errorMessage) {
       alert(errorMessage);
@@ -28,7 +28,7 @@ function NavItemDeposit({ accounts }: Props) {
     return "";
   }
 
-  function resetForm() {
+  function resetForm(): void {
     setAccountNumber("");
     setAmount(0);
   }

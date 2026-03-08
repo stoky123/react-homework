@@ -11,7 +11,7 @@ export abstract class Account {
     this.balance = balance;
   }
 
-  deposit(amount: number) {
+  deposit(amount: number): void {
     this.balance += amount;
   }
 

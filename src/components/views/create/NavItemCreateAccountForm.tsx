@@ -61,7 +61,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
     return "";
   }
 
-  function resetForm() {
+  function resetForm(): void {
     setAccountType("normal");
     setAccountNumber("");
     setUserName("");

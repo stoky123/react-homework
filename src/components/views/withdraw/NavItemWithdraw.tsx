@@ -10,7 +10,7 @@ function NavItemWithdraw({ accounts }: Props) {
   const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
-  function withdraw() {
+  function withdraw(): void {
     const errorMessage = getWithdrawRequestErrorMessage();
     if (errorMessage) {
       alert(errorMessage);
@@ -32,7 +32,7 @@ function NavItemWithdraw({ accounts }: Props) {
     return "";
   }
 
-  function resetForm() {
+  function resetForm(): void {
     setAccountNumber("");
     setAmount(0);
   }

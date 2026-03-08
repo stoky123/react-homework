@@ -11,7 +11,7 @@ function NavItemTransfer({ accounts }: Props) {
   const [toAccountNumber, setToAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
-  function transfer() {
+  function transfer(): void {
     const errorMessage = getTransferRequestErrorMessage();
     if (errorMessage) {
       alert(errorMessage);
@@ -37,7 +37,7 @@ function NavItemTransfer({ accounts }: Props) {
     return "";
   }
 
-  function resetForm() {
+  function resetForm(): void {
     setFromAccountNumber("");
     setToAccountNumber("");
     setAmount(0);

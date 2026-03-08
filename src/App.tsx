@@ -5,7 +5,7 @@ import NavItemTransfer from "./components/views/transfer/NavItemTransfer";
 import NavItemWithdraw from "./components/views/withdraw/NavItemWithdraw";
 import NavItemDeposit from "./components/views/deposit/NavItemDeposit";
 import { Account } from "./models/Account";
-import { useState } from "react";
+import { useState, type JSX } from "react";
 import "./App.css";
 
 export type AccountState = {
@@ -24,7 +24,7 @@ function App() {
   const [view, setView] = useState<View>("home");
   const [accounts, setAccounts] = useState<AccountState>({});
 
-  function renderView() {
+  function renderView(): JSX.Element {
     switch (view) {
       case "create":
         return (

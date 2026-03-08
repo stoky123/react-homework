@@ -15,7 +15,7 @@ function AccountNumberInputField({
 }: Props) {
   function handleChange(
     event: React.ChangeEvent<HTMLInputElement, HTMLInputElement>,
-  ) {
+  ): void {
     accountNumberStateSetter(formatAccountNumber(event.target.value));
   }
 
