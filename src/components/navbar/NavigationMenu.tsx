@@ -34,6 +34,8 @@ type NavItem = {
   view: string;
 };
 
+let activeView: string = "";
+
 function NavigationMenu({ setView }: Props) {
   return (
     <nav className="mini-bank-navbar">
@@ -41,8 +43,13 @@ function NavigationMenu({ setView }: Props) {
         {navItems.map((item) => (
           <li
             key={item.label}
-            className="mini-bank-navbar-list-item"
+            className={
+              activeView === item.view
+                ? "mini-bank-navbar-list-item mini-bank-active-view-button"
+                : "mini-bank-navbar-list-item"
+            }
             onClick={() => {
+              activeView = item.view;
               setView(item.view as View);
             }}
           >
