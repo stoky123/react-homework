@@ -12,13 +12,14 @@ function NavItemTransfer({ accounts }: Props) {
   const [amount, setAmount] = useState(0);
 
   function transfer() {
-    if (!validateTransferRequest()) {
-      alert("Please fill out the fields correctly.");
+    const errorMessage = getTransferRequestErrorMessage();
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
     if (!accounts[fromAccountNumber].withdraw(amount)) {
-      alert("Not enough balance to deposit.");
+      alert("Not enough balance to transfer.");
       return;
     }
 
@@ -26,13 +27,14 @@ function NavItemTransfer({ accounts }: Props) {
     resetForm();
   }
 
-  function validateTransferRequest() {
-    return (
-      accounts[fromAccountNumber] &&
-      accounts[toAccountNumber] &&
-      amount > 0 &&
-      fromAccountNumber !== toAccountNumber
-    );
+  function getTransferRequestErrorMessage(): string {
+    if (!accounts[fromAccountNumber]) return "Sender account does not exist.";
+    if (!accounts[toAccountNumber]) return "Receiver account does not exist.";
+    if (amount <= 0) return "Transfer amount should be greater than 0.";
+    if (fromAccountNumber === toAccountNumber)
+      return "Sender and receiver accounts can't be the same.";
+
+    return "";
   }
 
   function resetForm() {

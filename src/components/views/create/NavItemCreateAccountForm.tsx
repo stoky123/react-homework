@@ -18,8 +18,9 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   const [interestRate, setInterestRate] = useState(0);
 
   function createAccount() {
-    if (!validateAccountCreation()) {
-      alert("Please fill out the fields correctly!");
+    const errorMessage = getCreateAccountErrorMessage();
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
@@ -43,15 +44,21 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
     return newAccount;
   }
 
-  function validateAccountCreation() {
-    return (
-      !accounts[accountNumber] &&
-      accountNumber.length == 14 &&
-      userName.trim().length &&
-      (accountType === "normal"
-        ? balance >= -510
-        : balance >= 0 && interestRate >= 0)
-    );
+  function getCreateAccountErrorMessage(): string {
+    if (accounts[accountNumber])
+      return "An account with this account number already exists.";
+    if (accountNumber.length < 14)
+      return "Account number format should be 000-0000000-00";
+    if (!userName.trim().length) return "Please fill out the user name field.";
+    if (accountType === "normal") {
+      if (balance < -510)
+        return "Minimum starting balance is -510 for normal accounts.";
+    } else {
+      if (balance < 0) return "Minimum balance is 0 for savings accounts.";
+      if (interestRate < 0) return "Interest rate can't be a negative number.";
+    }
+
+    return "";
   }
 
   function resetForm() {

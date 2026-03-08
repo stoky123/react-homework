@@ -1,4 +1,4 @@
-export function formatAccountNumber(accountNumber: string) {
+export function formatAccountNumber(accountNumber: string): string {
   const digits = accountNumber.replace(/\D/g, "");
 
   if (digits.length <= 3) {

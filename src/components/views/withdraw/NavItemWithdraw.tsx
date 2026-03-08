@@ -11,19 +11,25 @@ function NavItemWithdraw({ accounts }: Props) {
   const [amount, setAmount] = useState(0);
 
   function withdraw() {
-    if (!validateWithdrawRequest()) {
-      alert("Please fill out the fields correctly.");
+    const errorMessage = getWithdrawRequestErrorMessage();
+    if (errorMessage) {
+      alert(errorMessage);
+      return;
     }
 
     if (!accounts[accountNumber].withdraw(amount)) {
       alert("Not enough balance to withdraw.");
+      return;
     }
 
     resetForm();
   }
 
-  function validateWithdrawRequest() {
-    return Boolean(accounts[accountNumber]);
+  function getWithdrawRequestErrorMessage(): string {
+    if (Boolean(accounts[accountNumber]))
+      return "Account with this account number does not exist.";
+
+    return "";
   }
 
   function resetForm() {

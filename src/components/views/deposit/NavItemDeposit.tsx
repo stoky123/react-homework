@@ -11,8 +11,9 @@ function NavItemDeposit({ accounts }: Props) {
   const [amount, setAmount] = useState(0);
 
   function deposit() {
-    if (!validateDepositRequest()) {
-      alert("Account number or amount is invalid.");
+    const errorMessage = getDepositRequestErrorMessage();
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
@@ -20,8 +21,11 @@ function NavItemDeposit({ accounts }: Props) {
     resetForm();
   }
 
-  function validateDepositRequest(): boolean {
-    return accounts[accountNumber] && amount > 0;
+  function getDepositRequestErrorMessage(): string {
+    if (!accounts[accountNumber]) return "Account does not exits.";
+    if (amount <= 0) return "Deposit amount should be greater than 0.";
+
+    return "";
   }
 
   function resetForm() {
