@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { formatAccountNumber } from "../utils/formatters";
-import type { AccountState } from "../App";
+import AccountNumberInputField from "../../shared/AccountNumberInputField";
+import type { AccountState } from "../../../App";
 
 type Props = {
   accounts: AccountState;
@@ -39,14 +39,10 @@ function NavItemWithdraw({ accounts }: Props) {
       }}
     >
       <span>Account number</span>
-      <input
+      <AccountNumberInputField
         name="withdraw-account-number"
-        value={accountNumber}
-        onChange={(e) => {
-          setAccountNumber(formatAccountNumber(e.target.value));
-        }}
-        placeholder="000-0000000-00"
-        maxLength={14}
+        accountNumberState={accountNumber}
+        accountNumberStateSetter={setAccountNumber}
       />
 
       <span>Amount (€)</span>

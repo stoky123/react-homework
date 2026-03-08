@@ -1,5 +1,5 @@
-import type { Account } from "../models/Account";
-import { SavingsAccount } from "../models/SavingsAccount";
+import type { Account } from "../../../models/Account";
+import { SavingsAccount } from "../../../models/SavingsAccount";
 import "./AccountListItem.css";
 
 type Props = {

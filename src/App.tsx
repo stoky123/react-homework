@@ -1,9 +1,9 @@
-import NavigationMenu from "./components/NavigationMenu";
-import NavItemCreateAccountForm from "./components/NavItemCreateAccountForm";
-import NavItemListAccounts from "./components/NavItemListAccounts";
-import NavItemTransfer from "./components/NavItemTransfer";
-import NavItemWithdraw from "./components/NavItemWithdraw";
-import NavItemDeposit from "./components/NavItemDeposit";
+import NavigationMenu from "./components/navbar/NavigationMenu";
+import NavItemCreateAccountForm from "./components/views/create/NavItemCreateAccountForm";
+import NavItemListAccounts from "./components/views/list/NavItemListAccounts";
+import NavItemTransfer from "./components/views/transfer/NavItemTransfer";
+import NavItemWithdraw from "./components/views/withdraw/NavItemWithdraw";
+import NavItemDeposit from "./components/views/deposit/NavItemDeposit";
 import { Account } from "./models/Account";
 import { useState } from "react";
 import "./App.css";
@@ -22,7 +22,6 @@ export type View =
 
 function App() {
   const [view, setView] = useState<View>("home");
-
   const [accounts, setAccounts] = useState<AccountState>({});
 
   function renderView() {

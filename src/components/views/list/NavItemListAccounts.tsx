@@ -1,4 +1,4 @@
-import type { AccountState } from "../App";
+import type { AccountState } from "../../../App";
 import AccountListItem from "./AccountListItem";
 import "./NavItemListAccounts.css";
 

@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { NormalAccount } from "../models/NormalAccount";
-import { SavingsAccount } from "../models/SavingsAccount";
-import type { Account, AccountType } from "../models/Account";
-import { formatAccountNumber } from "../utils/formatters";
-import type { AccountState } from "../App";
+import { NormalAccount } from "../../../models/NormalAccount";
+import { SavingsAccount } from "../../../models/SavingsAccount";
+import AccountNumberInputField from "../../shared/AccountNumberInputField";
+import type { Account, AccountType } from "../../../models/Account";
+import type { AccountState } from "../../../App";
 
 type Props = {
   accounts: { [id: string]: Account };
@@ -81,14 +81,10 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
       </select>
 
       <span>Account number</span>
-      <input
+      <AccountNumberInputField
         name="create-account-number"
-        value={accountNumber}
-        onChange={(e) => {
-          setAccountNumber(formatAccountNumber(e.target.value));
-        }}
-        placeholder="000-0000000-00"
-        maxLength={14}
+        accountNumberState={accountNumber}
+        accountNumberStateSetter={setAccountNumber}
       />
 
       <span>User name</span>

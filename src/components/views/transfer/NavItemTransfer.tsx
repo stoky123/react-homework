@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { formatAccountNumber } from "../utils/formatters";
-import type { AccountState } from "../App";
+import AccountNumberInputField from "../../shared/AccountNumberInputField";
+import type { AccountState } from "../../../App";
 
 type Props = {
   accounts: AccountState;
@@ -49,25 +49,17 @@ function NavItemTransfer({ accounts }: Props) {
       }}
     >
       <span>Sender account number</span>
-      <input
+      <AccountNumberInputField
         name="transfer-from-account"
-        value={fromAccountNumber}
-        onChange={(e) => {
-          setFromAccountNumber(formatAccountNumber(e.target.value));
-        }}
-        placeholder="000-0000000-00"
-        maxLength={14}
+        accountNumberState={fromAccountNumber}
+        accountNumberStateSetter={setFromAccountNumber}
       />
 
       <span>Receiver account number</span>
-      <input
+      <AccountNumberInputField
         name="transfer-to-account"
-        value={toAccountNumber}
-        onChange={(e) => {
-          setToAccountNumber(formatAccountNumber(e.target.value));
-        }}
-        placeholder="000-0000000-00"
-        maxLength={14}
+        accountNumberState={toAccountNumber}
+        accountNumberStateSetter={setToAccountNumber}
       />
 
       <span>Amount (€)</span>

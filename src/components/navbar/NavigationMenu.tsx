@@ -1,5 +1,5 @@
 import React from "react";
-import type { View } from "../App";
+import type { View } from "../../App";
 import "./NavigationMenu.css";
 
 const navItems: NavItem[] = [
