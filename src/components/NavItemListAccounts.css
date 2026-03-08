@@ -1,0 +1,11 @@
+.account-list-no-accounts {
+  margin-top: 5rem;
+  text-align: center;
+}
+
+.account-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

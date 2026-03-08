@@ -1,5 +1,6 @@
 import type { AccountState } from "../App";
 import AccountListItem from "./AccountListItem";
+import "./NavItemListAccounts.css";
 
 type Props = {
   accounts: AccountState;
@@ -7,11 +8,11 @@ type Props = {
 
 function NavItemListAccounts({ accounts }: Props) {
   if (!Object.keys(accounts).length) {
-    return <p>No accounts created yet.</p>;
+    return <p className="account-list-no-accounts">No accounts created yet.</p>;
   }
 
   return (
-    <ul>
+    <ul className="account-list">
       {Object.values(accounts)
         .sort((a, b) => a.accountNumber.localeCompare(b.accountNumber))
         .map((account) => (

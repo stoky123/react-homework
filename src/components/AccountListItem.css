@@ -1,0 +1,17 @@
+.account-list-item {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: repeat(5, 1fr);
+  border: solid black 1px;
+  padding: 1rem;
+}
+
+.account-list-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.account-list-item-info div:nth-child(1) {
+  font-weight: 700;
+}

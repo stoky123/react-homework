@@ -48,6 +48,7 @@ function NavItemTransfer({ accounts }: Props) {
         transfer();
       }}
     >
+      <span>Sender account number</span>
       <input
         value={fromAccountNumber}
         onChange={(e) => {
@@ -57,6 +58,7 @@ function NavItemTransfer({ accounts }: Props) {
         maxLength={14}
       />
 
+      <span>Receiver account number</span>
       <input
         value={toAccountNumber}
         onChange={(e) => {
@@ -66,10 +68,11 @@ function NavItemTransfer({ accounts }: Props) {
         maxLength={14}
       />
 
+      <span>Amount (€)</span>
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(e.target.valueAsNumber);
+          setAmount(Number(e.target.valueAsNumber.toFixed(2)));
         }}
         type="number"
         placeholder="0"

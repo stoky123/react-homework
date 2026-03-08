@@ -30,11 +30,11 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   function buildAccount(): Account {
     let newAccount: Account;
     if (accountType === "normal") {
-      newAccount = new NormalAccount(accountNumber, userName, balance);
+      newAccount = new NormalAccount(accountNumber, userName.trim(), balance);
     } else {
       newAccount = new SavingsAccount(
         accountNumber,
-        userName,
+        userName.trim(),
         balance,
         interestRate,
       );
@@ -47,7 +47,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
     return (
       !accounts[accountNumber] &&
       accountNumber.length == 14 &&
-      userName &&
+      userName.trim().length &&
       (accountType === "normal"
         ? balance >= -510
         : balance >= 0 && interestRate >= 0)
@@ -64,12 +64,15 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
 
   return (
     <form
+      className="create-account-form"
       onSubmit={(e) => {
         e.preventDefault();
         createAccount();
       }}
     >
+      <span>Account type</span>
       <select
+        className="create-account-type"
         value={accountType}
         onChange={(event) => setAccountType(event.target.value as AccountType)}
       >
@@ -77,6 +80,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         <option value="savings">Savings Account</option>
       </select>
 
+      <span>Account number</span>
       <input
         value={accountNumber}
         onChange={(e) => {
@@ -86,6 +90,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         maxLength={14}
       />
 
+      <span>User name</span>
       <input
         value={userName}
         onChange={(e) => {
@@ -94,24 +99,28 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         placeholder="User Name"
       />
 
+      <span>Balance (€)</span>
       <input
         value={balance || ""}
         onChange={(e) => {
-          setBalance(Number(e.target.value));
+          setBalance(Number(e.target.valueAsNumber.toFixed(2)));
         }}
         type="number"
         placeholder="0"
       />
 
       {accountType === "savings" && (
-        <input
-          value={interestRate || ""}
-          onChange={(e) => {
-            setInterestRate(Number(e.target.value));
-          }}
-          type="number"
-          placeholder="0"
-        />
+        <>
+          <span>Interest rate (percentage)</span>
+          <input
+            value={interestRate || ""}
+            onChange={(e) => {
+              setInterestRate(Number(e.target.valueAsNumber.toFixed(2)));
+            }}
+            type="number"
+            placeholder="0"
+          />
+        </>
       )}
 
       <button type="submit">Create</button>

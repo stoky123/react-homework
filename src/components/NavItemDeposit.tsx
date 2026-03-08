@@ -36,6 +36,7 @@ function NavItemDeposit({ accounts }: Props) {
         deposit();
       }}
     >
+      <span>Account number</span>
       <input
         value={accountNumber}
         onChange={(e) => {
@@ -45,10 +46,11 @@ function NavItemDeposit({ accounts }: Props) {
         maxLength={14}
       />
 
+      <span>Amount (€)</span>
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(e.target.valueAsNumber);
+          setAmount(Number(e.target.valueAsNumber.toFixed(2)));
         }}
         type="number"
         placeholder="0"

@@ -1,5 +1,6 @@
 import type { Account } from "../models/Account";
 import { SavingsAccount } from "../models/SavingsAccount";
+import "./AccountListItem.css";
 
 type Props = {
   account: Account;
@@ -7,13 +8,34 @@ type Props = {
 
 function AccountListItem({ account }: Props) {
   return (
-    <li>
-      <div>Account Type: {account.getType()}</div>
-      <div>Account Number: {account.accountNumber}</div>
-      <div>Balance: €{account.balanceAmount}</div>
-      <div>User Name: {account.userName}</div>
+    <li className="account-list-item">
+      <div className="account-list-item-info">
+        <div>Account Type:</div>
+        <div>{account.getType()}</div>
+      </div>
+
+      <div className="account-list-item-info">
+        <div>Account Number:</div>
+        <div>{account.accountNumber}</div>
+      </div>
+
+      <div className="account-list-item-info">
+        <div>Balance:</div>
+        <div>€{account.balanceAmount}</div>
+      </div>
+
+      <div className="account-list-item-info">
+        <div>User Name:</div>
+        <div>{account.userName}</div>
+      </div>
+
       {account instanceof SavingsAccount && (
-        <div>Interest Rate: {account.interestRate}%</div>
+        <>
+          <div className="account-list-item-info">
+            <div>Interest Rate:</div>
+            <div>{account.interestRate}%</div>
+          </div>
+        </>
       )}
     </li>
   );

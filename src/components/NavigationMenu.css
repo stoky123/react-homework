@@ -17,8 +17,6 @@
 
 .mini-bank-navbar-list-item {
   user-select: none;
-  font-family: "Noto Sans JP", sans-serif;
-  letter-spacing: 0.1em;
   cursor: pointer;
   font-size: 14px;
   font-weight: 400;

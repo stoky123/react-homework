@@ -38,6 +38,7 @@ function NavItemWithdraw({ accounts }: Props) {
         withdraw();
       }}
     >
+      <span>Account number</span>
       <input
         value={accountNumber}
         onChange={(e) => {
@@ -47,10 +48,11 @@ function NavItemWithdraw({ accounts }: Props) {
         maxLength={14}
       />
 
+      <span>Amount (€)</span>
       <input
         value={amount || ""}
         onChange={(e) => {
-          setAmount(e.target.valueAsNumber);
+          setAmount(Number(e.target.valueAsNumber.toFixed(2)));
         }}
         type="number"
         placeholder="0"

@@ -1,0 +1,71 @@
+body {
+  font-family: "Noto Sans JP", sans-serif;
+  letter-spacing: 0.1rem;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 35%;
+  margin: 5rem auto;
+}
+
+select {
+  padding: 1rem;
+  text-transform: uppercase;
+  border-radius: 0;
+  letter-spacing: 0.1rem;
+  text-align-last: center;
+}
+
+input {
+  text-align: center;
+  padding: 1rem;
+  border-radius: 0;
+  border-width: 1px;
+}
+
+span {
+  text-transform: uppercase;
+}
+
+button {
+  background-color: #222;
+  border-style: none;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0;
+  max-width: none;
+  min-height: 44px;
+  min-width: 10px;
+  outline: none;
+  overflow: hidden;
+  padding: 9px 20px 8px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 100%;
+}
+
+button:hover,
+button:focus {
+  opacity: 0.75;
+}
