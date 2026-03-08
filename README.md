@@ -52,13 +52,6 @@ Account numbers are automatically formatted while typing: 000-0000000-00
 
 ---
 
-### Money Input Validation
-
-Money inputs only allow **two decimal places**.
-Example: 10 10.5 10.25
-
----
-
 ### Transfer Validation
 
 Transfers include checks such as:

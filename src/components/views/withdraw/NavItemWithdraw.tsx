@@ -26,7 +26,7 @@ function NavItemWithdraw({ accounts }: Props) {
   }
 
   function getWithdrawRequestErrorMessage(): string {
-    if (Boolean(accounts[accountNumber]))
+    if (!Boolean(accounts[accountNumber]))
       return "Account with this account number does not exist.";
 
     return "";
@@ -54,12 +54,11 @@ function NavItemWithdraw({ accounts }: Props) {
       <span>Amount (€)</span>
       <input
         name="withdraw-amount"
-        value={amount || ""}
+        value={amount}
         onChange={(e) => {
-          setAmount(Number(e.target.valueAsNumber.toFixed(2)));
+          setAmount(Number(e.target.value));
         }}
         type="number"
-        placeholder="0"
       />
 
       <button type="submit">Withdraw</button>

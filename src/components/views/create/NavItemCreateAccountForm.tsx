@@ -107,12 +107,11 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
       <span>Balance (€)</span>
       <input
         name="create-balance"
-        value={balance || ""}
+        value={balance}
         onChange={(e) => {
-          setBalance(Number(e.target.valueAsNumber.toFixed(2)));
+          setBalance(Number(e.target.value));
         }}
         type="number"
-        placeholder="0"
       />
 
       {accountType === "savings" && (
@@ -120,12 +119,11 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
           <span>Interest rate (percentage)</span>
           <input
             name="create-interest-rate"
-            value={interestRate || ""}
+            value={interestRate}
             onChange={(e) => {
-              setInterestRate(Number(e.target.valueAsNumber.toFixed(2)));
+              setInterestRate(Number(e.target.value));
             }}
             type="number"
-            placeholder="0"
           />
         </>
       )}
