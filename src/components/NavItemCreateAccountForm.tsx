@@ -64,7 +64,6 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
 
   return (
     <form
-      className="create-account-form"
       onSubmit={(e) => {
         e.preventDefault();
         createAccount();
@@ -73,6 +72,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
       <span>Account type</span>
       <select
         className="create-account-type"
+        name="create-account-type"
         value={accountType}
         onChange={(event) => setAccountType(event.target.value as AccountType)}
       >
@@ -82,6 +82,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
 
       <span>Account number</span>
       <input
+        name="create-account-number"
         value={accountNumber}
         onChange={(e) => {
           setAccountNumber(formatAccountNumber(e.target.value));
@@ -92,6 +93,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
 
       <span>User name</span>
       <input
+        name="create-user-name"
         value={userName}
         onChange={(e) => {
           setUserName(e.target.value);
@@ -101,6 +103,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
 
       <span>Balance (€)</span>
       <input
+        name="create-balance"
         value={balance || ""}
         onChange={(e) => {
           setBalance(Number(e.target.valueAsNumber.toFixed(2)));
@@ -113,6 +116,7 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
         <>
           <span>Interest rate (percentage)</span>
           <input
+            name="create-interest-rate"
             value={interestRate || ""}
             onChange={(e) => {
               setInterestRate(Number(e.target.valueAsNumber.toFixed(2)));
