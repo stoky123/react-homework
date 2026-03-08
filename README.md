@@ -1,73 +1,96 @@
-# React + TypeScript + Vite
+# React Mini Bank App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple **banking simulation application** built with **React and TypeScript**.
+The application allows users to create accounts, manage balances, and perform banking operations such as deposits, withdrawals and trasnfers.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Create two types of accounts:
+  - **Normal Account**
+  - **Savings Account**
+- View all created accounts
+- Deposit money
+- Withdraw money
+- Transfer money between accounts
+- Validation rules for account operations
+- Dynamic UI depending on account type
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Accounty Types
 
-## Expanding the ESLint configuration
+#### Normal Account
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Owner
+- Account Number
+- Balance
+- Minimal balance: **-500** euro
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+#### Savings Account
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- Owner
+- Account Number
+- Balance
+- **Interest Rate**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Technologies Used
+
+- React
+- TypeScript
+- Vite
+- CSS
+
+---
+
+## Example Features Implemented
+
+### Automatic ID formatting
+
+Account numbers are automatically formatted while typing: 000-0000000-00
+
+---
+
+### Money Input Validation
+
+Money inputs only allow **two decimal places**.
+Example: 10 10.5 10.25
+
+---
+
+### Transfer Validation
+
+Transfers include checks such as:
+
+- Source and destination accounts cannot be the same
+- Insufficient balance validation
+- Normal accounts cannot go below **-500 euros** and savings accounts cannot go below **0 euros**.
+
+---
+
+## Getting Started
+
+### Clone the repository
+
+```bash
+git clone https://github.com/stoky123/react-homework.git
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Run the development server
+
+```bash
+npm run dev
+```
+
+then open:
+
+```
+http://localhost:5173
 ```
