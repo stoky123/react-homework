@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import type { View } from "../../App";
 import "./NavigationMenu.css";
 
@@ -27,6 +26,7 @@ const navItems: NavItem[] = [
 
 type Props = {
   setView: React.Dispatch<React.SetStateAction<View>>;
+  activeView: string;
 };
 
 type NavItem = {
@@ -34,9 +34,7 @@ type NavItem = {
   view: string;
 };
 
-function NavigationMenu({ setView }: Props) {
-  const [activeView, setActiveView] = useState("");
-
+function NavigationMenu({ setView, activeView }: Props) {
   return (
     <nav className="mini-bank-navbar">
       <ul className="mini-bank-navbar-list">
@@ -49,7 +47,6 @@ function NavigationMenu({ setView }: Props) {
                 : "mini-bank-navbar-list-item"
             }
             onClick={() => {
-              setActiveView(item.view);
               setView(item.view as View);
             }}
           >

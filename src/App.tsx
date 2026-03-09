@@ -48,7 +48,7 @@ function App() {
 
   return (
     <>
-      <NavigationMenu setView={setView} />
+      <NavigationMenu setView={setView} activeView={view} />
       {renderView()}
     </>
   );
