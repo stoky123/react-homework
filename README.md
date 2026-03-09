@@ -87,3 +87,9 @@ then open:
 ```
 http://localhost:5173
 ```
+
+### Test
+
+```bash
+npm test
+```
