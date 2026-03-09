@@ -10,7 +10,7 @@ type Props = {
   setAccounts: React.Dispatch<React.SetStateAction<AccountState>>;
 };
 
-function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
+function CreateAccountView({ accounts, setAccounts }: Props) {
   const [accountType, setAccountType] = useState<AccountType>("normal");
   const [accountNumber, setAccountNumber] = useState("");
   const [userName, setUserName] = useState("");
@@ -133,4 +133,4 @@ function NavItemCreateAccountForm({ accounts, setAccounts }: Props) {
   );
 }
 
-export default NavItemCreateAccountForm;
+export default CreateAccountView;

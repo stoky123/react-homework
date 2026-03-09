@@ -6,7 +6,7 @@ type Props = {
   accounts: AccountState;
 };
 
-function NavItemTransfer({ accounts }: Props) {
+function TransferView({ accounts }: Props) {
   const [fromAccountNumber, setFromAccountNumber] = useState("");
   const [toAccountNumber, setToAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
@@ -79,4 +79,4 @@ function NavItemTransfer({ accounts }: Props) {
   );
 }
 
-export default NavItemTransfer;
+export default TransferView;

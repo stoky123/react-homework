@@ -1,12 +1,12 @@
 import type { AccountState } from "../../../App";
 import AccountListItem from "./AccountListItem";
-import "./NavItemListAccounts.css";
+import "./AccountListView.css";
 
 type Props = {
   accounts: AccountState;
 };
 
-function NavItemListAccounts({ accounts }: Props) {
+function AccountListView({ accounts }: Props) {
   if (!Object.keys(accounts).length) {
     return <p className="account-list-no-accounts">No accounts created yet.</p>;
   }
@@ -22,4 +22,4 @@ function NavItemListAccounts({ accounts }: Props) {
   );
 }
 
-export default NavItemListAccounts;
+export default AccountListView;

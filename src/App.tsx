@@ -1,9 +1,9 @@
 import NavigationMenu from "./components/navbar/NavigationMenu";
-import NavItemCreateAccountForm from "./components/views/create/NavItemCreateAccountForm";
-import NavItemListAccounts from "./components/views/list/NavItemListAccounts";
-import NavItemTransfer from "./components/views/transfer/NavItemTransfer";
-import NavItemWithdraw from "./components/views/withdraw/NavItemWithdraw";
-import NavItemDeposit from "./components/views/deposit/NavItemDeposit";
+import CreateAccountView from "./components/views/create/CreateAccountView";
+import AccountListView from "./components/views/list/AccountListView";
+import TransferView from "./components/views/transfer/TransferView";
+import WithdrawView from "./components/views/withdraw/WithdrawView";
+import DepositView from "./components/views/deposit/DepositView";
 import { Account } from "./models/Account";
 import { useState, type JSX } from "react";
 import "./App.css";
@@ -28,19 +28,16 @@ function App() {
     switch (view) {
       case "create":
         return (
-          <NavItemCreateAccountForm
-            accounts={accounts}
-            setAccounts={setAccounts}
-          />
+          <CreateAccountView accounts={accounts} setAccounts={setAccounts} />
         );
       case "list":
-        return <NavItemListAccounts accounts={accounts} />;
+        return <AccountListView accounts={accounts} />;
       case "transfer":
-        return <NavItemTransfer accounts={accounts} />;
+        return <TransferView accounts={accounts} />;
       case "withdraw":
-        return <NavItemWithdraw accounts={accounts} />;
+        return <WithdrawView accounts={accounts} />;
       case "deposit":
-        return <NavItemDeposit accounts={accounts} />;
+        return <DepositView accounts={accounts} />;
       default:
         return <></>;
     }

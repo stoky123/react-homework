@@ -6,7 +6,7 @@ type Props = {
   accounts: AccountState;
 };
 
-function NavItemWithdraw({ accounts }: Props) {
+function WithdrawView({ accounts }: Props) {
   const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
@@ -66,4 +66,4 @@ function NavItemWithdraw({ accounts }: Props) {
   );
 }
 
-export default NavItemWithdraw;
+export default WithdrawView;

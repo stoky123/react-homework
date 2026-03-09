@@ -6,7 +6,7 @@ type Props = {
   accounts: AccountState;
 };
 
-function NavItemDeposit({ accounts }: Props) {
+function DepositView({ accounts }: Props) {
   const [accountNumber, setAccountNumber] = useState("");
   const [amount, setAmount] = useState(0);
 
@@ -62,4 +62,4 @@ function NavItemDeposit({ accounts }: Props) {
   );
 }
 
-export default NavItemDeposit;
+export default DepositView;
